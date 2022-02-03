@@ -13,11 +13,11 @@ namespace MusicApi.Controllers
     {
         [HttpGet]
         [EnableQuery]
-        public IActionResult Get([FromServices] MusicDataContext context, [FromServices] ILogger<PlaylistController> logger)
+        public IActionResult Get([FromServices] IMusicRepository repository, [FromServices] ILogger<PlaylistController> logger)
         {
             try
             {
-                return Ok(context.Artists);
+                return Ok(repository.Set<Artist>());
             }
             catch (Exception ex)
             {
